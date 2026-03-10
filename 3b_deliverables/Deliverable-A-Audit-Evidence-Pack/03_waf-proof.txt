@@ -1,0 +1,259 @@
+DSL_L@DSL_LT1 MINGW64 ~
+$ aws wafv2 list-web-acls --scope CLOUDFRONT --region us-east-1 --query "WebACLs[].{Name:Name,Id:Id}"
+[
+    {
+        "Name": "kandagawa-cf-waf01",
+        "Id": "1e11fc0e-fbf7-4901-bc9a-135ce5c17342"
+    },
+    {
+        "Name": "liberdade-cf-waf01",
+        "Id": "4ca384bf-f267-44bd-aee5-4607ca8a9e30"
+    }
+]
+
+
+DSL_L@DSL_LT1 MINGW64 ~
+$ aws wafv2 get-sampled-requests --web-acl-arn "$(aws wafv2 list-web-acls --scope CLOUDFRONT --region us-east-1 --query 'WebACLs[0].ARN' --output text)" --rule-metric-name kandagawa-cf-waf01 --scope CLOUDFRONT --time-window StartTime=2026-03-09T00:00:00Z,EndTime=2026-03-09T23:59:59Z --max-items 5 --region us-east-1
+{
+    "SampledRequests": [
+        {
+            "Request": {
+                "ClientIP": "94.26.106.205",
+                "Country": "DE",
+                "URI": "/wp-admin/",
+                "Method": "GET",
+                "HTTPVersion": "HTTP/1.1",
+                "Headers": [
+                    {
+                        "Name": "Host",
+                        "Value": "ackeeart.shop"
+                    },
+                    {
+                        "Name": "User-Agent",
+                        "Value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.6167.85 Safari/537.36"
+                    },
+                    {
+                        "Name": "Accept",
+                        "Value": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7"
+                    },
+                    {
+                        "Name": "Accept-Encoding",
+                        "Value": "gzip, deflate, br"
+                    },
+                    {
+                        "Name": "Accept-Language",
+                        "Value": "fr-FR,fr;q=0.9,en;q=0.8"
+                    },
+                    {
+                        "Name": "Cache-Control",
+                        "Value": "max-age=0"
+                    },
+                    {
+                        "Name": "Connection",
+                        "Value": "keep-alive"
+                    },
+                    {
+                        "Name": "Sec-Ch-Ua",
+                        "Value": "\"Not_A Brand\";v=\"8\", \"Chromium\";v=\"121\", \"Google Chrome\";v=\"121\""
+                    },
+                    {
+                        "Name": "Sec-Ch-Ua-Mobile",
+                        "Value": "?0"
+                    },
+                    {
+                        "Name": "Sec-Ch-Ua-Platform",
+                        "Value": "\"Windows\""
+                    },
+                    {
+                        "Name": "Sec-Fetch-Dest",
+                        "Value": "document"
+                    },
+                    {
+                        "Name": "Sec-Fetch-Mode",
+                        "Value": "navigate"
+                    },
+                    {
+                        "Name": "Sec-Fetch-Site",
+                        "Value": "none"
+                    },
+                    {
+                        "Name": "Sec-Fetch-User",
+                        "Value": "?1"
+                    },
+                    {
+                        "Name": "Upgrade-Insecure-Requests",
+                        "Value": "1"
+                    }
+                ]
+            },
+            "Weight": 1,
+            "Timestamp": "2026-03-08T23:37:12.319000-07:00",
+            "Action": "ALLOW"
+        },
+        {
+            "Request": {
+                "ClientIP": "34.168.240.100",
+                "Country": "US",
+                "URI": "//website/wp-includes/wlwmanifest.xml",
+                "Method": "GET",
+                "HTTPVersion": "HTTP/1.1",
+                "Headers": [
+                    {
+                        "Name": "Host",
+                        "Value": "ackeeart.shop"
+                    },
+                    {
+                        "Name": "Keep-Alive",
+                        "Value": "300"
+                    },
+                    {
+                        "Name": "Connection",
+                        "Value": "keep-alive"
+                    },
+                    {
+                        "Name": "User-Agent",
+                        "Value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4240.193 Safari/537.36"
+                    },
+                    {
+                        "Name": "Accept-Language",
+                        "Value": "en-US,en;q=0.5"
+                    },
+                    {
+                        "Name": "Accept",
+                        "Value": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+                    }
+                ]
+            },
+            "Weight": 1,
+            "Timestamp": "2026-03-08T23:35:33.298000-07:00",
+            "Action": "ALLOW"
+        },
+        {
+            "Request": {
+                "ClientIP": "76.249.140.212",
+                "Country": "US",
+                "URI": "/health",
+                "Method": "GET",
+                "HTTPVersion": "HTTP/1.1",
+                "Headers": [
+                    {
+                        "Name": "Host",
+                        "Value": "ackeeart.shop"
+                    },
+                    {
+                        "Name": "User-Agent",
+                        "Value": "curl/8.18.0"
+                    },
+                    {
+                        "Name": "Accept",
+                        "Value": "*/*"
+                    }
+                ]
+            },
+            "Weight": 1,
+            "Timestamp": "2026-03-08T23:14:13.034000-07:00",
+            "Action": "ALLOW"
+        },
+        {
+            "Request": {
+                "ClientIP": "205.169.39.2",
+                "Country": "US",
+                "URI": "/",
+                "Method": "GET",
+                "HTTPVersion": "HTTP/2.0",
+                "Headers": [
+                    {
+                        "Name": "host",
+                        "Value": "app.ackeeart.shop"
+                    },
+                    {
+                        "Name": "pragma",
+                        "Value": "no-cache"
+                    },
+                    {
+                        "Name": "cache-control",
+                        "Value": "no-cache"
+                    },
+                    {
+                        "Name": "upgrade-insecure-requests",
+                        "Value": "1"
+                    },
+                    {
+                        "Name": "user-agent",
+                        "Value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.5938.132 Safari/537.36"
+                    },
+                    {
+                        "Name": "accept",
+                        "Value": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7"
+                    },
+                    {
+                        "Name": "sec-fetch-site",
+                        "Value": "none"
+                    },
+                    {
+                        "Name": "sec-fetch-mode",
+                        "Value": "navigate"
+                    },
+                    {
+                        "Name": "sec-fetch-user",
+                        "Value": "?1"
+                    },
+                    {
+                        "Name": "sec-fetch-dest",
+                        "Value": "document"
+                    },
+                    {
+                        "Name": "accept-encoding",
+                        "Value": "gzip, deflate, br, zstd"
+                    },
+                    {
+                        "Name": "priority",
+                        "Value": "u=0, i"
+                    }
+                ]
+            },
+            "Weight": 1,
+            "Timestamp": "2026-03-08T23:28:19.044000-07:00",
+            "Action": "ALLOW"
+        },
+        {
+            "Request": {
+                "ClientIP": "195.211.77.141",
+                "Country": "RU",
+                "URI": "/",
+                "Method": "HEAD",
+                "HTTPVersion": "HTTP/1.1",
+                "Headers": [
+                    {
+                        "Name": "Host",
+                        "Value": "app.ackeeart.shop"
+                    },
+                    {
+                        "Name": "User-agent",
+                        "Value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+                    },
+                    {
+                        "Name": "Accept-Encoding",
+                        "Value": "gzip, deflate"
+                    },
+                    {
+                        "Name": "Accept",
+                        "Value": "*/*"
+                    },
+                    {
+                        "Name": "Connection",
+                        "Value": "keep-alive"
+                    }
+                ]
+            },
+            "Weight": 1,
+            "Timestamp": "2026-03-08T23:53:38.193000-07:00",
+            "Action": "ALLOW"
+        }
+    ],
+    "PopulationSize": 57,
+    "TimeWindow": {
+        "StartTime": "2026-03-08T21:06:28.951000-07:00",
+        "EndTime": "2026-03-09T00:06:28.951000-07:00"
+    }
+}

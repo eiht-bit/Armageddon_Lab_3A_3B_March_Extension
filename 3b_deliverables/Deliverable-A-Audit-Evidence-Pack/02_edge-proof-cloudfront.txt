@@ -1,0 +1,12 @@
+DSL_L@DSL_LT1 MINGW64 ~
+$ curl -I https://ackeeart.shop/health
+HTTP/1.1 200 OK
+Content-Type: text/html; charset=utf-8
+Content-Length: 2
+Connection: keep-alive
+Date: Mon, 09 Mar 2026 07:05:17 GMT
+Server: Werkzeug/3.1.6 Python/3.9.25
+X-Cache: Miss from cloudfront
+Via: 1.1 a2df2413207d4bf6462c2592b304bffe.cloudfront.net (CloudFront)
+X-Amz-Cf-Pop: SFO53-P7
+X-Amz-Cf-Id: 6M3D8Tojacmjp_V0tz43GhKyUbDm_WDr_mUpYYFOz9bVXKu8t-VlSA==

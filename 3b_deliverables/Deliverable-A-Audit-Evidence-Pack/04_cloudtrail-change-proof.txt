@@ -1,0 +1,85 @@
+DSL_L@DSL_LT1 MINGW64 ~
+$ aws cloudtrail lookup-events --region ap-northeast-1 --lookup-attributes AttributeKey=EventSource,AttributeValue=ec2.amazonaws.com --max-results 5 --query "Events[].{Time:EventTime,Event:EventName,User:Username}" --output table
+----------------------------------------------------------------------
+|                            LookupEvents                            |
++----------------------------+-----------------------------+---------+
+|            Event           |            Time             |  User   |
++----------------------------+-----------------------------+---------+
+|  DescribeRouteTables       |  2026-03-08T23:47:17-07:00  |  AWSCLI |
+|  DescribeInstanceStatus    |  2026-03-08T23:44:14-07:00  |  AWSCLI |
+|  DescribeInstanceAttribute |  2026-03-08T23:44:13-07:00  |  AWSCLI |
+|  DescribeNetworkInterfaces |  2026-03-08T23:44:13-07:00  |  AWSCLI |
+|  DescribeAddresses         |  2026-03-08T23:44:13-07:00  |  AWSCLI |
++----------------------------+-----------------------------+---------+
+DSL_L@DSL_LT1 MINGW64 ~
+$ aws cloudtrail lookup-events --region ap-northeast-1 --lookup-attributes AttributeKey=EventSource,AttributeValue=elasticloadbalancing.amazonaws.com --max-results 5 --query "Events[].{Time:EventTime,Event:EventName,User:Username}" --output table
+-----------------------------------------------------------------
+|                         LookupEvents                          |
++-----------------------+-----------------------------+---------+
+|         Event         |            Time             |  User   |
++-----------------------+-----------------------------+---------+
+|  DescribeTargetHealth |  2026-03-08T23:00:04-07:00  |  AWSCLI |
+|  DescribeTargetHealth |  2026-03-08T23:00:04-07:00  |  AWSCLI |
+|  DescribeTargetHealth |  2026-03-08T22:59:49-07:00  |  AWSCLI |
+|  DescribeTargetHealth |  2026-03-08T22:59:49-07:00  |  AWSCLI |
+|  DescribeTargetHealth |  2026-03-08T22:59:34-07:00  |  AWSCLI |
++-----------------------+-----------------------------+---------+
+
+DSL_L@DSL_LT1 MINGW64 ~
+$ aws cloudtrail lookup-events --region ap-northeast-1 --max-results 50 --start-time 2026-03-09T01:00:00Z --end-time 2026-03-09T03:00:00Z --query "Events[].{Time:EventTime,Event:EventName,Source:EventSource}" --output table
+-------------------------------------------------------------------------------------------------------------
+|                                               LookupEvents                                                |
++--------------------------------------+--------------------------------------+-----------------------------+
+|                 Event                |               Source                 |            Time             |
++--------------------------------------+--------------------------------------+-----------------------------+
+|  Decrypt                             |  kms.amazonaws.com                   |  2026-03-08T19:59:54-07:00  |
+|  GetSecretValue                      |  secretsmanager.amazonaws.com        |  2026-03-08T19:59:54-07:00  |
+|  Decrypt                             |  kms.amazonaws.com                   |  2026-03-08T19:59:33-07:00  |
+|  GetSecretValue                      |  secretsmanager.amazonaws.com        |  2026-03-08T19:59:33-07:00  |
+|  Decrypt                             |  kms.amazonaws.com                   |  2026-03-08T19:59:24-07:00  |
+|  GetSecretValue                      |  secretsmanager.amazonaws.com        |  2026-03-08T19:59:24-07:00  |
+|  Decrypt                             |  kms.amazonaws.com                   |  2026-03-08T19:59:03-07:00  |
+|  GetSecretValue                      |  secretsmanager.amazonaws.com        |  2026-03-08T19:59:03-07:00  |
+|  GetSecretValue                      |  secretsmanager.amazonaws.com        |  2026-03-08T19:58:54-07:00  |
+|  Decrypt                             |  kms.amazonaws.com                   |  2026-03-08T19:58:54-07:00  |
+|  Decrypt                             |  kms.amazonaws.com                   |  2026-03-08T19:58:33-07:00  |
+|  GetSecretValue                      |  secretsmanager.amazonaws.com        |  2026-03-08T19:58:33-07:00  |
+|  UpdateInstanceInformation           |  ssm.amazonaws.com                   |  2026-03-08T19:58:27-07:00  |
+|  Decrypt                             |  kms.amazonaws.com                   |  2026-03-08T19:58:24-07:00  |
+|  GetSecretValue                      |  secretsmanager.amazonaws.com        |  2026-03-08T19:58:24-07:00  |
+|  ListInstanceAssociations            |  ssm.amazonaws.com                   |  2026-03-08T19:58:11-07:00  |
+|  GetSecretValue                      |  secretsmanager.amazonaws.com        |  2026-03-08T19:58:03-07:00  |
+|  Decrypt                             |  kms.amazonaws.com                   |  2026-03-08T19:58:03-07:00  |
+|  GetSecretValue                      |  secretsmanager.amazonaws.com        |  2026-03-08T19:57:53-07:00  |
+|  Decrypt                             |  kms.amazonaws.com                   |  2026-03-08T19:57:53-07:00  |
+|  Decrypt                             |  kms.amazonaws.com                   |  2026-03-08T19:57:33-07:00  |
+|  GetSecretValue                      |  secretsmanager.amazonaws.com        |  2026-03-08T19:57:33-07:00  |
+|  Decrypt                             |  kms.amazonaws.com                   |  2026-03-08T19:57:23-07:00  |
+|  GetSecretValue                      |  secretsmanager.amazonaws.com        |  2026-03-08T19:57:23-07:00  |
+|  GetSecretValue                      |  secretsmanager.amazonaws.com        |  2026-03-08T19:57:04-07:00  |
+|  Decrypt                             |  kms.amazonaws.com                   |  2026-03-08T19:57:04-07:00  |
+|  DescribeCertificate                 |  acm.amazonaws.com                   |  2026-03-08T19:56:54-07:00  |
+|  GetSecretValue                      |  secretsmanager.amazonaws.com        |  2026-03-08T19:56:53-07:00  |
+|  Decrypt                             |  kms.amazonaws.com                   |  2026-03-08T19:56:53-07:00  |
+|  Decrypt                             |  kms.amazonaws.com                   |  2026-03-08T19:56:33-07:00  |
+|  GetSecretValue                      |  secretsmanager.amazonaws.com        |  2026-03-08T19:56:33-07:00  |
+|  Decrypt                             |  kms.amazonaws.com                   |  2026-03-08T19:56:23-07:00  |
+|  GetSecretValue                      |  secretsmanager.amazonaws.com        |  2026-03-08T19:56:23-07:00  |
+|  GetCallerIdentity                   |  sts.amazonaws.com                   |  2026-03-08T19:56:21-07:00  |
+|  GetSecretValue                      |  secretsmanager.amazonaws.com        |  2026-03-08T19:56:03-07:00  |
+|  Decrypt                             |  kms.amazonaws.com                   |  2026-03-08T19:56:03-07:00  |
+|  DescribeInstanceAttribute           |  ec2.amazonaws.com                   |  2026-03-08T19:56:00-07:00  |
+|  DescribeInstanceCreditSpecifications|  ec2.amazonaws.com                   |  2026-03-08T19:56:00-07:00  |
+|  DescribeTargetHealth                |  elasticloadbalancing.amazonaws.com  |  2026-03-08T19:56:00-07:00  |
+|  DescribeNetworkInterfaces           |  ec2.amazonaws.com                   |  2026-03-08T19:55:59-07:00  |
+|  GetSecretValue                      |  secretsmanager.amazonaws.com        |  2026-03-08T19:55:59-07:00  |
+|  DescribeRules                       |  elasticloadbalancing.amazonaws.com  |  2026-03-08T19:55:59-07:00  |
+|  DescribeParameters                  |  ssm.amazonaws.com                   |  2026-03-08T19:55:59-07:00  |
+|  DescribeVolumes                     |  ec2.amazonaws.com                   |  2026-03-08T19:55:59-07:00  |
+|  Decrypt                             |  kms.amazonaws.com                   |  2026-03-08T19:55:59-07:00  |
+|  DescribeParameters                  |  ssm.amazonaws.com                   |  2026-03-08T19:55:59-07:00  |
+|  ListTagsForResource                 |  ssm.amazonaws.com                   |  2026-03-08T19:55:59-07:00  |
+|  DescribeNetworkInterfaces           |  ec2.amazonaws.com                   |  2026-03-08T19:55:59-07:00  |
+|  GetParameter                        |  ssm.amazonaws.com                   |  2026-03-08T19:55:59-07:00  |
+|  DescribeTags                        |  elasticloadbalancing.amazonaws.com  |  2026-03-08T19:55:59-07:00  |
++--------------------------------------+--------------------------------------+-----------------------------+
